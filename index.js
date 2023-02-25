@@ -16,11 +16,17 @@ app.get('/canal/teste', (req, res) => {
 app.get('/teste', (req, res) => {
   res.send("ola")
 })
-//passando parametros na rota
+//passando parametros na rota usando o :
+//parametros opcionais usam ao final? ex /:empresa? 
 app.get('/teste/:param/:empresa?', (req, res) => {
   const { param, empresa } = req.params //desestruturação 
   res.send(empresa ? `olá ${param} ${empresa}` : `olá ${param}`) 
   //operador ternário
+})
+
+app.get('/testequery', (req, res) => {
+  var testeQuery = req.query["query"]
+  testeQuery ? res.send(testeQuery) : res.send("query nao encontrada")
 })
 
 app.listen(4000, function(error){
